@@ -1,0 +1,470 @@
+/* GLobal Reset:  Remove browser defaults so spacing is predictable. */
+
+*{
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
+/* PAGE: purple background fills the browser window.
+Flexbox centers the white card horizontally and vertically.   */
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #171717;
+  background-color: #6457ff;
+}
+
+button,input,select
+{
+  font:inherit;
+}
+
+.page {
+  /*At least the full screen height.   */
+  min-height: 100vh;
+
+  /*Enable flexible alignment.  */
+  display:flex;
+
+  /* Center card vertically.  */
+  align-items: center;
+
+  /* Center card horizontally.    */
+  justify-content: center;
+
+  /* Space around card on small screens.  */
+  padding :24px 16px;
+
+  /* Screenshot's purple background.  */
+  background-color: #6457ff;
+
+}  
+
+/* CARD: White rectangule with limited width and inner spacing.    */
+.converter-card
+{
+  /* Fit available mobile width. */
+  width:100%;
+  
+  /* Keep desktop  card compact. */
+  max-width: 370px;
+
+  /* Top,sides,bottom  */
+  padding: 32px 30px 28px;
+
+  /* White Card */
+  background-color: #ffffff;
+
+  /* Rounded Corners  */
+  border-radius: 6px;
+
+  /* Border Shadow  */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  
+}  
+
+/* HEADING: Centered text with generous space below it.  */
+.converter-card h1{
+
+  /* Gap befor amount label.  */
+  margin-bottom: 46px;
+
+  /* Center heading.  */
+  text-align: center;
+
+  /* Heading Size.  */
+  font-size: 28px;
+
+  /* Semi-bold   */
+  font-weight: 600;
+
+  /* Vertical text spacing.   */ 
+  line-height: 1.25;
+
+  /* Slightly tigher letters.  */
+  letter-spacing: -0.5px;
+  
+  /*Keep heading on one line.  */
+  white-space: nowrap;
+}
+
+/* LABELS */
+.converter-card label{
+
+  /* Display each label above its control.   */
+  display: block;
+
+  /* Gap below label.  */
+  margin-bottom: 8px;
+  
+  font-size: 16px;
+
+}
+
+/* AMOUNT */
+#amount{
+  
+  /* Full-width white input with a gray outline.  */
+  width:100%;
+
+  /* Input height  */
+  height: 51px;
+
+  /* Space inside left/right.  */
+  padding: 0 13px;
+
+  /* Gap befor currency selectors. */
+  margin-bottom: 22px;
+  border:1px solid #bdbdbd;
+  border-radius: 5px;
+  background-color: #ffffff;
+  font-size: 16px;
+  outline:none;
+}
+
+
+#amount:focus{
+
+  /* Purple focus border helps users see the active input.  */
+  border-color: #6457ff;
+  box-shadow: 0 0 0 2px rgba(100,87,255,0.14);
+}
+
+
+/* CURRENCY ROW  */
+.currency-row{
+
+  /*Three columns: From,swap button, To.  */
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 40px minmax(0,1fr);
+
+  /* Align controls at the bottom.  */
+  align-items: end;
+  
+  /* Horizontal space between columns. */
+  column-gap: 8px;
+
+}
+
+.currency-field{
+
+  /* Allows each dropdown to shrink  on small screen.     */
+  min-width: 0;
+
+}
+
+.currency-field select
+{
+  /* Each drop down fills its own grid colums.   */
+  width: 100%;
+
+  /* Dropdown height close to the screenshot.  */
+  height:46px;
+
+  /* Adds space around the flag  and currency code.  */
+  padding: 0 9px;
+
+  /* Neutral-gray border.  */
+  border: 1px solid #bdbdbd;
+
+  /* Slightly rounded dropdown corners.  */
+  border-radius: 5px;
+
+  /* White dropdown background.  */
+  background-color: #ffffff;
+
+  /* Dark currency text.  */
+  color: #db075f;
+
+  /* Keeps currency text compact like the reference. */
+  font-size: 15px;
+
+  /* Shows the user that the dropdown is interactive.  */
+  cursor: pointer;
+
+}
+
+.currency-field select:focus{
+
+  /* visible keyboard -focus indicator.  */
+  outline: 2px solid rgba(100, 87, 255, 0.45);
+
+  /*Separates the outline slightly from the border.   */
+  outline-offset: 1px;
+}
+
+.swap-button
+{
+  /* Fixed width for the center column.   */
+  width: 40px;
+
+  /* Same height as dropdown for alignment  */
+  height: 46px;
+
+  /*NO Surrounding button border.   */
+  border: none;
+
+  /* Keeps the puple page/card design uncluttered.  */
+  background: transparent;
+
+  /* Black swap symbol.  */
+  color: #351191;
+
+  /* Makes the swap icon promient.  */
+  font-size: 18px;
+
+  /* prevent extra vertical space around the symbol.  */
+  line-height: 1;
+
+  /* Indicates that clicking swaps the curriencies.  */
+  cursor: pointer;
+
+}
+
+.swap-button:hover
+{
+
+  /* Purple icon on hover  */
+  color: rgb(24, 168, 120);
+}
+
+/* 
+==================================================
+          8.Exchange -Rate text
+===================================================     
+*/
+
+.rate-text
+{
+  /* Reserve a little vertical space for the rate.   */
+  min-height: 20px;
+
+  /* Space between dropdown and exchange rate.  */
+  margin-top: 22px ;
+
+  /* Rate text size from the reference.   */
+  font-size: 16px;
+
+  /* Keeps the text readable.  */
+  line-height: 1.4;
+
+  border:2px double #17075c;
+  border-radius: 5px;
+
+  /* Avoids overflow if a long value is displayed.  */
+  overflow-wrap: anywhere;
+
+}
+
+/*
+==============================================================
+   9. CONVERSION RESULT AND ERROR MESSAGES
+==============================================================
+*/
+
+.result-text
+{
+
+  /* Adds space above the calculated result.  */
+  margin-top: 12px;
+  
+  /* Slightly smaller than the rate text.  */
+  font-size: 15px;
+
+  /*Result text style   */
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  
+  /* Gives the result room to breathe.  */
+  line-height: 1.5;
+
+  border:2px double #810510;
+
+  /* Keeps long results within the card.  */
+  overflow-wrap: anywhere;
+
+}
+
+.error-message
+{
+
+  /* Space above the error message.    */
+  margin-top: 10px;
+
+  /* Red text makes error easy to notice.  */
+  color: #a4101c;
+
+  /* smaller than the main interface text.  */
+  font-size: 13px;
+
+  /* Prevents multi-line errors from appearing crowded.  */
+  line-height: 1.5;
+}
+
+/*
+=======================================================
+      10.MAIN  PURPLE BUTTON
+=======================================================
+*/
+
+.convert-button
+{
+
+  /* Makes the button as wide as the amount input.  */
+  width: 100%;
+
+  /* Button height similar to the screenshot.   */
+  min-height: 52px;
+
+  /* Space above the main call-to-action button.  */
+  margin-top: 32px;
+
+  /* Removes the default browser border.  */
+  border: none;
+
+  /*  matches the rounded input and dropdown corners.  */
+  border-radius: 5px;
+
+  /* Same purple as the page bg.  */
+  background-color: #6457ff;
+
+  /* white button text   */
+  color: #ffffff;
+
+  /* Gives the button label moderate emphasis.  */
+  font-weight: 500; 
+
+  /* Shows that the button is clickable.  */
+  cursor: pointer;
+
+  /* Makes hover  and press changes feel smoother.  */
+  transition: background-color 0.2s ease , transform 0.1s ease;
+
+}
+
+.convert-button:hover
+{
+
+  /* Slightly  darker purple when hovered.  */
+  background-color: #5144ed;
+}
+
+.convert-button:active
+{
+
+  /* Tiny press effect when clicked.    */
+  transform:scale(0.99);
+}
+
+/*
+====================================================
+                11.RESET BUTTTON
+=====================================================
+*/
+
+.reset-button
+{
+
+  /* Allows margin  auto to center the button.  */
+  display: block;
+
+  /* 12px above; automatic left/right margins center it.  */
+  margin: 12px auto 0;
+
+  /* Adds a comfortable clickable area.  */
+  padding: 4px 10px;
+
+  /*No button border.   */
+  border: none;
+
+  /* Keeps the reset action visually subtle.  */
+  background: transparent;
+
+  /* Uses the brand purple for secondary text.  */
+  color: #6457ff;
+
+  /* Smaller than the main button text.  */
+  font-size: 14px;
+
+  /* Indicates an interactive action.  */
+  cursor: pointer;
+
+}
+
+.reset-button:hover
+{
+
+  /* Gives the user feedback on hover.  */
+  text-decoration: underline;
+}
+
+/*
+======================================================
+               12.RESPONSIVE MOBILE ADJUSTMENTS
+=======================================================
+*/
+
+@media(max-width:380px )
+{
+  .converter-card
+  {
+
+    /* Shrink the heading to help it fit on one line.  */
+    font-size: 24px;
+
+    /* Reduce the gap below the heading slightly.  */
+    margin-bottom: 38px;
+
+  }
+
+  .currency-row
+  {
+    /* Make the swap column narrower on small phones.   */
+    grid-template-columns: minmax(0,1fr) 32px minmax(0,1fr);
+
+    /* Reduce the gap to give dropdowns more room.  */
+    column-gap: 5px;
+
+  }
+
+  .swap-button
+  {
+    
+    /* Match the narrower middle grid column.  */
+    width:32px;
+
+    /* Slightly shrink the symbol.  */
+    font-size: 25px;
+
+  }
+
+  .currency-field select{
+
+    /* Keep currency dropdowns usable on narrow screens. */
+    padding: 0 5px;
+
+    /* Prevents the dropdown contents from feeling cramped.  */
+    font-size: 12px;
+
+  }
+
+}
+
+/*   */
+/*   */
+/*  */
+/*  */
+
+    
+
+    
+
+
+
+
+  
+
+
+
+
+
